@@ -1,0 +1,49 @@
+//
+//  Localizable.strings
+//  OpenConv
+//
+//  Copyright (c) 2013 Cai, Zhi-Wei. All rights reserved.
+//
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+
+/* Drop Zone */
+
+"LABEL_DRAG_FILES_HERE_TO_START"                    = "拖曳欲轉換的檔案至此";
+"LABEL_DROP_FILES_TO_STRAT_CONVERTING"              = "解除拖曳以進行轉換";
+"LABEL_CONVERTING_PLEASE_WAIT"                      = "正在進行轉換\n請稍候...";
+"LABEL_NOTIFICATION_TITLE"                          = "轉換完成！";
+"LABEL_NOTIFICATION_INFO_TEXT"                      = "檔案 \"%@\" 轉換完成。";
+"LABEL_NOTIFICATION_ERROR_TITLE"                    = "轉換錯誤...";
+"LABEL_NOTIFICATION_ERROR_INFO_TEXT"                = "檔案 \"%@\" 無法識別。";
+"LABEL_NOTIFICATION_PROGRESS_INFO_TEXT"             = "%li / %li（編碼：%@）";
+"LABEL_NOTIFICATION_COMPLIETE_TITLE"                = "全數完成！";
+"LABEL_NOTIFICATION_COMPLIETE_INFO_TEXT"            = "共處理了 %li 個檔案。";
+"LABEL_NOTIFICATION_COMPLIETE_PROGRESS_INFO_TEXT"   = "費時：%f 秒";
+
+/* Pasteboard */
+
+"LABEL_NOTIFICATION_PASTEBOARD_TITLE"               = "剪貼簿內容已轉換！";
+"LABEL_NOTIFICATION_PASTEBOARD_INFO_TEXT"           = "費時：%f 秒";
+"LABEL_NOTIFICATION_PASTEBOARD_PROGRESS_INFO_TEXT"  = "由%@轉換為%@。";
+"LABEL_CHINESE_TRADITIONAL"                         = "繁體中文";
+"LABEL_CHINESE_SIMPLIFIED"                          = "簡體中文";
+
+/* File Types */
+
+"FILE_ENCODING_TYPE_UNKNOWN"                        = "無法識別";
+"FILE_ENCODING_TYPE_BIG5"                           = "Big-5";
+"FILE_ENCODING_TYPE_GB18030"                        = "GB-18030";
+"FILE_ENCODING_TYPE_UTF8"                           = "UTF-8";
+"FILE_ENCODING_TYPE_UTF16"                          = "UTF-16";

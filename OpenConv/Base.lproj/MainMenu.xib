@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
+            <connections>
+                <outlet property="delegate" destination="494" id="495"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application"/>
+        <menu title="AMainMenu" systemMenu="main" id="29">
+            <items>
+                <menuItem title="OpenConv" id="56">
+                    <menu key="submenu" title="OpenConv" systemMenu="apple" id="57">
+                        <items>
+                            <menuItem title="關於 OpenConv" id="58">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="orderFrontStandardAboutPanel:" target="-2" id="142"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="236">
+                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                            </menuItem>
+                            <menuItem title="偏好設定" id="DvS-gJ-jgA">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="偏好設定" id="MMc-My-irX">
+                                    <items>
+                                        <menuItem title="一般設定" id="7kM-QS-jSf">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <menu key="submenu" title="一般設定" id="m22-ZK-egS">
+                                                <items>
+                                                    <menuItem title="強制繁體輸入" id="qiF-SD-InV">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <binding destination="Ylg-Es-QAZ" name="value" keyPath="values.ForceChineseTraditionalInput" id="jnG-Yr-Aow"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="強制簡體輸出" id="GWG-P0-6Qx">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <binding destination="Ylg-Es-QAZ" name="value" keyPath="values.ForceChineseSimplifiedOutput" id="8xg-6f-NDj"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="停用 UTF-8 輸出" id="98u-Au-FD2">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <binding destination="Ylg-Es-QAZ" name="value" keyPath="values.DisableUTF8Output" id="blL-HX-7lV"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                </items>
+                                            </menu>
+                                        </menuItem>
+                                        <menuItem title="剪貼簿轉換" id="qfN-Tx-BFI">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <menu key="submenu" title="剪貼簿轉換" id="lLt-or-cBK">
+                                                <items>
+                                                    <menuItem title="啟用" id="cTz-XK-31O">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <binding destination="Ylg-Es-QAZ" name="value" keyPath="values.PasteboardConversionEnabled" id="5kO-BG-4vd"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem isSeparatorItem="YES" id="30A-ry-RXk"/>
+                                                    <menuItem title="雙擊左鍵轉繁體" id="bO1-5a-ZEv">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <binding destination="Ylg-Es-QAZ" name="enabled" keyPath="values.PasteboardConversionEnabled" id="m7F-vh-13J"/>
+                                                            <binding destination="Ylg-Es-QAZ" name="value" keyPath="values.RightClickPasteboardChineseTraditional" id="9Vj-rs-IHp"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                </items>
+                                            </menu>
+                                        </menuItem>
+                                        <menuItem title="通知中心" id="iRc-hq-rAD">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <menu key="submenu" title="通知中心" id="rpv-z2-5yT">
+                                                <items>
+                                                    <menuItem title="停用內建通知中心提示" id="dis-Kq-mVc">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <binding destination="Ylg-Es-QAZ" name="value" keyPath="values.DisableNotificationCenter" id="Twi-Ys-ldI"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                </items>
+                                            </menu>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="143">
+                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                            </menuItem>
+                            <menuItem title="隱藏 OpenConv" keyEquivalent="h" id="134">
+                                <connections>
+                                    <action selector="hide:" target="-1" id="367"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="隱藏其他" keyEquivalent="h" id="145">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                <connections>
+                                    <action selector="hideOtherApplications:" target="-1" id="368"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="顯示全部" id="150">
+                                <connections>
+                                    <action selector="unhideAllApplications:" target="-1" id="370"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="149">
+                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                            </menuItem>
+                            <menuItem title="結束 OpenConv" keyEquivalent="q" id="136">
+                                <connections>
+                                    <action selector="terminate:" target="-3" id="449"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+                <menuItem title="視窗" id="19">
+                    <menu key="submenu" title="視窗" systemMenu="window" id="24">
+                        <items>
+                            <menuItem title="縮到最小" keyEquivalent="m" id="23">
+                                <connections>
+                                    <action selector="performMiniaturize:" target="-1" id="37"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="縮放" id="239">
+                                <connections>
+                                    <action selector="performZoom:" target="-1" id="240"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="92">
+                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                            </menuItem>
+                            <menuItem title="將此程式所有視窗移至最前" id="5">
+                                <connections>
+                                    <action selector="arrangeInFront:" target="-1" id="39"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+                <menuItem title="輔助說明" id="490">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="輔助說明" systemMenu="help" id="491">
+                        <items>
+                            <menuItem title="OpenConv 專案頁面" keyEquivalent="?" id="492">
+                                <connections>
+                                    <action selector="goToGithub:" target="494" id="1St-KI-v3g"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+            </items>
+        </menu>
+        <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" frameAutosaveName="" animationBehavior="default" id="371" customClass="GlassWindow">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" unifiedTitleAndToolbar="YES"/>
+            <rect key="contentRect" x="335" y="390" width="140" height="133"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1366" height="768"/>
+            <view key="contentView" id="372">
+                <rect key="frame" x="0.0" y="0.0" width="140" height="133"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xha-VY-pQ7">
+                        <rect key="frame" x="29" y="50" width="82" height="32"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textFieldCell key="cell" controlSize="small" refusesFirstResponder="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" focusRingType="none" alignment="center" title="拖曳欲轉換的檔案至此" id="m2U-yJ-WwT">
+                            <font key="font" metaFont="controlContent"/>
+                            <color key="textColor" name="alternateSelectedControlColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <imageView focusRingType="none" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HTk-ZR-w2Z" userLabel="Drag Drop Zone" customClass="OpenConvDragDropView">
+                        <rect key="frame" x="0.0" y="-1" width="140" height="135"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <imageCell key="cell" refusesFirstResponder="YES" focusRingType="none" alignment="left" animates="YES" id="PEG-ZQ-6io"/>
+                        <connections>
+                            <outlet property="textField_zoneLabel" destination="Xha-VY-pQ7" id="50I-je-Eb2"/>
+                        </connections>
+                    </imageView>
+                </subviews>
+            </view>
+        </window>
+        <customObject id="494" customClass="OpenConvAppDelegate">
+            <connections>
+                <outlet property="win_mainWindow" destination="371" id="dg7-ky-qiJ"/>
+            </connections>
+        </customObject>
+        <customObject id="ral-Wz-1IG" customClass="OpenConvDragDropView">
+            <connections>
+                <outlet property="_textField_zoneLabel" destination="Xha-VY-pQ7" id="SHt-GF-g6V"/>
+            </connections>
+        </customObject>
+        <customObject id="420" customClass="NSFontManager"/>
+        <userDefaultsController representsSharedInstance="YES" id="Ylg-Es-QAZ"/>
+    </objects>
+</document>
