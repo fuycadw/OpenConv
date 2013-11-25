@@ -88,23 +88,28 @@
 		if ([[pboard types] containsObject:NSFilenamesPboardType]) {
             
             // Define objects.
+            BOOL    isNameMode;
             long    i, c, count;
             NSDate  *stopWatchBeigns;
 			NSArray *files;
             
             // Gathering information.
+            isNameMode      = [defaults_UserDefaults boolForKey:@"NameMode"];
             stopWatchBeigns = [NSDate date];
 			files           = [pboard propertyListForType:NSFilenamesPboardType];
-            c               = 0;
+            c               = 1;
             count           = [files count];
+            
+            // Debug Output.
+            [self openConvErrorLog:[NSString stringWithFormat:@"Name Mode: %li", (long)isNameMode]];
             
             for ( i = 0; i < count; i++, c++) {
                 
+                // Show hints.
+                [_textField_zoneLabel setStringValue:[NSString stringWithFormat:NSLocalizedString(@"LABEL_CONVERTING_PLEASE_WAIT", nil), i, count]];
+                
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                     @autoreleasepool {
-                        
-                        // Show hints.
-                        [_textField_zoneLabel setStringValue:[NSString stringWithFormat:NSLocalizedString(@"LABEL_CONVERTING_PLEASE_WAIT", nil), i, count]];
                         
                         // Define objects.
                         BOOL                bool_isCht;
@@ -120,68 +125,78 @@
                         inputType   = NSLocalizedString(@"FILE_ENCODING_TYPE_UNKNOWN", nil);
                         outputType  = @"";
                         
-                        // Debug Output.
-                        [self openConvErrorLog:@"Trying GB-18030"];
-                        
-                        enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
-                        textData = [[NSString alloc] initWithContentsOfFile:filePath
-                                                                   encoding:enc
-                                                                      error:&error];
-                        
-                        // Debug Output.
-                        [self openConvErrorLog:[NSString stringWithFormat:@"Error: %@", error]];
-                        
-                        if( error ||
-                           [defaults_UserDefaults boolForKey:@"ForceChineseTraditionalInput"]) {
+                        if (isNameMode) {
+                            bool_isCht  = ![defaults_UserDefaults boolForKey:@"ForceChineseSimplifiedOutput"];
+                            textData    = [NSString stringWithString:[[filePath lastPathComponent] stringByDeletingPathExtension]];
                             
                             // Debug Output.
-                            [self openConvErrorLog:@"Trying Big-5"];
-                            
-                            inputType = NSLocalizedString(@"FILE_ENCODING_TYPE_BIG5", nil);
-                            error = nil;
-                            enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingBig5);
-                            textData = [[NSString alloc] initWithContentsOfFile:filePath
-                                                                       encoding:enc
-                                                                          error:&error];
-                            if( error ) {
-                                
-                                // Debug Output.
-                                [self openConvErrorLog:@"Trying UTF-8"];
-                                
-                                inputType = NSLocalizedString(@"FILE_ENCODING_TYPE_UTF8", nil);
-                                error = nil;
-                                enc = NSUTF8StringEncoding;
-                                textData = [[NSString alloc] initWithContentsOfFile:filePath
-                                                                           encoding:enc
-                                                                              error:&error];
-                            } else {
-                                bool_isCht = NO;
-                            }
-                            
-                            if( error ) {
-                                
-                                // Debug Output.
-                                [self openConvErrorLog:@"Trying UTF-16"];
-                                
-                                inputType = NSLocalizedString(@"FILE_ENCODING_TYPE_UTF16", nil);
-                                error = nil;
-                                enc = NSUTF16StringEncoding;
-                                textData = [[NSString alloc] initWithContentsOfFile:filePath
-                                                                           encoding:enc
-                                                                              error:&error];
-                            }
-                            
-                            if ( [defaults_UserDefaults boolForKey:@"ForceChineseSimplifiedOutput"] ) {
-                                
-                                // Debug Output.
-                                [self openConvErrorLog:@"Force CHT -> CHS Mode."];
-                                bool_isCht = NO;
-                            }
+                            [self openConvErrorLog:[NSString stringWithFormat:@"Name Mode textData: %@", textData]];
                             
                         } else {
                             
-                            inputType = NSLocalizedString(@"FILE_ENCODING_TYPE_GB18030", nil);
+                            // Debug Output.
+                            [self openConvErrorLog:@"Trying GB-18030"];
                             
+                            enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
+                            textData = [[NSString alloc] initWithContentsOfFile:filePath
+                                                                       encoding:enc
+                                                                          error:&error];
+                            
+                            // Debug Output.
+                            [self openConvErrorLog:[NSString stringWithFormat:@"Error: %@", error]];
+                            
+                            if ( error ||
+                                [defaults_UserDefaults boolForKey:@"ForceChineseTraditionalInput"]) {
+                                
+                                // Debug Output.
+                                [self openConvErrorLog:@"Trying Big-5"];
+                                
+                                inputType = NSLocalizedString(@"FILE_ENCODING_TYPE_BIG5", nil);
+                                error = nil;
+                                enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingBig5);
+                                textData = [[NSString alloc] initWithContentsOfFile:filePath
+                                                                           encoding:enc
+                                                                              error:&error];
+                                if( error ) {
+                                    
+                                    // Debug Output.
+                                    [self openConvErrorLog:@"Trying UTF-8"];
+                                    
+                                    inputType = NSLocalizedString(@"FILE_ENCODING_TYPE_UTF8", nil);
+                                    error = nil;
+                                    enc = NSUTF8StringEncoding;
+                                    textData = [[NSString alloc] initWithContentsOfFile:filePath
+                                                                               encoding:enc
+                                                                                  error:&error];
+                                } else {
+                                    bool_isCht = NO;
+                                }
+                                
+                                if( error ) {
+                                    
+                                    // Debug Output.
+                                    [self openConvErrorLog:@"Trying UTF-16"];
+                                    
+                                    inputType = NSLocalizedString(@"FILE_ENCODING_TYPE_UTF16", nil);
+                                    error = nil;
+                                    enc = NSUTF16StringEncoding;
+                                    textData = [[NSString alloc] initWithContentsOfFile:filePath
+                                                                               encoding:enc
+                                                                                  error:&error];
+                                }
+                                
+                                if ( [defaults_UserDefaults boolForKey:@"ForceChineseSimplifiedOutput"] ) {
+                                    
+                                    // Debug Output.
+                                    [self openConvErrorLog:@"Force CHT -> CHS Mode."];
+                                    bool_isCht = NO;
+                                }
+                                
+                            } else {
+                                
+                                inputType = NSLocalizedString(@"FILE_ENCODING_TYPE_GB18030", nil);
+                                
+                            }
                         }
                         
                         zhTable = [self zhTableWithReverse:!bool_isCht];
@@ -213,35 +228,54 @@
                                 }
                             }
                             
-                            NSStringEncoding enc;
-                            
-                            if ([[NSUserDefaults standardUserDefaults] boolForKey:@"DisableUTF8Output"]) {
+                            if (isNameMode) {
+                                
+                                NSString *newPath;
+                                
+                                newPath = [NSString stringWithFormat:@"%@/%@.%@",
+                                           [filePath stringByDeletingLastPathComponent],
+                                           textData,
+                                           [filePath pathExtension]];;
+                                [[NSFileManager defaultManager] moveItemAtPath:filePath
+                                                                        toPath:newPath
+                                                                         error:nil];
                                 
                                 // Debug Output.
-                                [self openConvErrorLog:[NSString stringWithFormat:@"Big-5/GB-18030 Output Mode: %@", outputType]];
-                                
-                                enc = (bool_isCht) ? CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingBig5) : CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
-                                outputType = [NSString stringWithFormat:@"%@.%@",
-                                              outputType,
-                                              (bool_isCht) ? @"big5" : @"gb"];
+                                [self openConvErrorLog:[NSString stringWithFormat:@"Name Mode New Path: %@", newPath]];
                                 
                             } else {
                                 
-                                enc = NSUTF8StringEncoding;
-                                outputType = [NSString stringWithFormat:@"%@.utf8",
-                                              outputType];
+                                NSStringEncoding enc;
+                                
+                                if ([[NSUserDefaults standardUserDefaults] boolForKey:@"DisableUTF8Output"]) {
+                                    
+                                    // Debug Output.
+                                    [self openConvErrorLog:[NSString stringWithFormat:@"Big-5/GB-18030 Output Mode: %@", outputType]];
+                                    
+                                    enc = (bool_isCht) ? CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingBig5) : CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
+                                    outputType = [NSString stringWithFormat:@"%@.%@",
+                                                  outputType,
+                                                  (bool_isCht) ? @"big5" : @"gb"];
+                                    
+                                } else {
+                                    
+                                    enc = NSUTF8StringEncoding;
+                                    outputType = [NSString stringWithFormat:@"%@.utf8",
+                                                  outputType];
+                                    
+                                }
+                                
+                                saveName = [NSString stringWithFormat:@"%@.%@.%@",
+                                            [filePath stringByDeletingPathExtension],
+                                            outputType,
+                                            [filePath pathExtension]];
+                                
+                                [[[NSData alloc] initWithData:[textData dataUsingEncoding:enc
+                                                                     allowLossyConversion:YES]]
+                                 writeToFile:saveName
+                                 atomically:YES];
                                 
                             }
-                            
-                            saveName = [NSString stringWithFormat:@"%@.%@.%@",
-                                        [filePath stringByDeletingPathExtension],
-                                        outputType,
-                                        [filePath pathExtension]];
-                            
-                            [[[NSData alloc] initWithData:[textData dataUsingEncoding:enc
-                                                                 allowLossyConversion:YES]]
-                             writeToFile:saveName
-                             atomically:YES];
                             
                             [self showNotification:NSLocalizedString(@"LABEL_NOTIFICATION_TITLE", nil)
                                           subtitle:[NSString stringWithFormat:NSLocalizedString(@"LABEL_NOTIFICATION_PROGRESS_INFO_TEXT", nil),

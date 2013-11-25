@@ -24,8 +24,6 @@
 
 @synthesize win_mainWindow=_win_mainWindow;
 
-//@synthesize dict_UserDefaults;
-
 #pragma mark - Basic
 
 + (void) initialize
@@ -67,6 +65,7 @@
                                        [NSNumber numberWithBool:NO],    @"DisableUTF8Output",
                                        [NSNumber numberWithBool:NO],    @"ForceChineseSimplifiedOutput",
                                        [NSNumber numberWithBool:NO],    @"ForceChineseTraditionalInput",
+                                       [NSNumber numberWithBool:NO],    @"NameMode",
                                        [NSNumber numberWithBool:YES],   @"PasteboardConversionEnabled",
                                        [NSNumber numberWithBool:NO],    @"RightClickPasteboardChineseTraditional",
                                        define_UserDefaultsVersion,      @"UserDefaultsVersion",

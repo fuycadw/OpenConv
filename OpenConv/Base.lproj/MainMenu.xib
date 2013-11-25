@@ -171,7 +171,7 @@
                         <rect key="frame" x="29" y="50" width="82" height="32"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textFieldCell key="cell" controlSize="small" refusesFirstResponder="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" focusRingType="none" alignment="center" title="拖曳欲轉換的檔案至此" id="m2U-yJ-WwT">
-                            <font key="font" metaFont="controlContent"/>
+                            <font key="font" metaFont="cellTitle"/>
                             <color key="textColor" name="alternateSelectedControlColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
@@ -184,7 +184,23 @@
                             <outlet property="textField_zoneLabel" destination="Xha-VY-pQ7" id="50I-je-Eb2"/>
                         </connections>
                     </imageView>
+                    <button translatesAutoresizingMaskIntoConstraints="NO" id="HtA-ZS-be0">
+                        <rect key="frame" x="31" y="7" width="76" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="check" title="擋名轉換模式" bezelStyle="regularSquare" imagePosition="left" alignment="left" controlSize="mini" refusesFirstResponder="YES" inset="2" id="a7u-1z-l5U">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="miniSystem"/>
+                        </buttonCell>
+                        <connections>
+                            <binding destination="Ylg-Es-QAZ" name="value" keyPath="values.NameMode" id="pz5-sk-qG7"/>
+                        </connections>
+                    </button>
                 </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="HtA-ZS-be0" secondAttribute="trailing" constant="35" id="8gs-TQ-iZw"/>
+                    <constraint firstItem="HtA-ZS-be0" firstAttribute="leading" secondItem="372" secondAttribute="leading" constant="35" id="YfU-vK-bLE"/>
+                    <constraint firstAttribute="bottom" secondItem="HtA-ZS-be0" secondAttribute="bottom" constant="10" id="eiq-aP-hbR"/>
+                </constraints>
             </view>
         </window>
         <customObject id="494" customClass="OpenConvAppDelegate">
@@ -194,7 +210,7 @@
         </customObject>
         <customObject id="ral-Wz-1IG" customClass="OpenConvDragDropView">
             <connections>
-                <outlet property="_textField_zoneLabel" destination="Xha-VY-pQ7" id="SHt-GF-g6V"/>
+                <outlet property="textField_zoneLabel" destination="Xha-VY-pQ7" id="LgE-Mg-FGA"/>
             </connections>
         </customObject>
         <customObject id="420" customClass="NSFontManager"/>

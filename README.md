@@ -28,6 +28,17 @@ the source for the convenience of those end-users without Xcode
 installed.
 
 
+Changelog
+---------
+
+v1.1:
+* Bug fix.
+* Add filename converting function.
+
+v1.0:
+* Initial release.
+
+
 License
 -------
 
