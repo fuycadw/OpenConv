@@ -5,6 +5,8 @@ Open source version of Conv, a Mac OS X encoding converter.
 
 https://github.com/x43x61x69/OpenConv
 
+Download from [Mac App Store](https://itunes.apple.com/tw/app/openconv/id766229958?l=zh&mt=12).
+
 
 Description
 -----------
